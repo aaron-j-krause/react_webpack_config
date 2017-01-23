@@ -3,8 +3,17 @@
   "version": "1.0.0",
   "description": "Webpack Config for Basic React",
   "main": "index.js",
+  "//": "npm scripts are commands that get run in the terminal. We can configure them here.",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "//": "test and start can be run by inputting 'npm test' or 'npm start' into the terminal",
+    "//": "respectively. Everything else can be run with: 'npm run <command name>'",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "//": "we want to make sure we use the locally installed version of webpack so we give it",
+    "//": "a path to the script in node_modules",
+    "build": "./node_modules/webpack/bin/webpack.js",
+    "//": "webpack-dev-server watches for changes, builds your app and then serves it",
+    "//": "the inline option means that it will refresh your app every time it rebuilds",
+    "serve": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline"
   },
   "keywords": [],
   "author": "",
