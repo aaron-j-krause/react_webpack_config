@@ -1,5 +1,6 @@
 const join = require('path').join
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 const paths = {
   entry: join(__dirname, '/src/index.js'),
@@ -46,6 +47,17 @@ module.exports = {
         options: {
           presets: ['react', 'es2015']
         }
+      },
+      // webpack even allows us to bring in files that aren't javascript into our
+      // bundle. In this case we're bringing in our stylesheets. In order to create
+      // a loader that understands adding CSS to the bundle we use another plugin.
+      // ExtractTextPlugin has a method extract. That method takes an object that has
+      // a property "loader". That loader can be configured like any other loader.
+      {
+        test: /\.css$/,
+        loader: ExtractTextPlugin.extract({
+          loader: 'css-loader'
+        })
       }
     ]
   },
@@ -57,6 +69,10 @@ module.exports = {
     // HtmlWebpackPlugin generates an index.html in the directory pointed to by output.path.
     // By default it generates it with a script tag at the bottom that points to the bundle
     // that webpack created.
-    new HtmlWebpackPlugin()
+    new HtmlWebpackPlugin(),
+    // ExtractTextPlugin takes an argument of the filename for the style file that it creates
+    // in the directory pointed to by output.path. It even tells HtmlWebpackPlugin to add a
+    // link with this src to the head of your newly generated index.html!
+    new ExtractTextPlugin('style.css')
   ]
 }
