@@ -1,4 +1,5 @@
 const join = require('path').join
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const paths = {
   entry: join(__dirname, '/src/index.js'),
@@ -47,5 +48,15 @@ module.exports = {
         }
       }
     ]
-  }
+  },
+  // Webpack even grants the capability to generate files that didn't previously exist
+  // we use plugins for that. The plugins property takes an array of plugins. Plugins
+  // are third party so the way they're configured varies but often times it involves
+  // instantiating the plugin and passing in an object with your configuration options.
+  plugins: [
+    // HtmlWebpackPlugin generates an index.html in the directory pointed to by output.path.
+    // By default it generates it with a script tag at the bottom that points to the bundle
+    // that webpack created.
+    new HtmlWebpackPlugin()
+  ]
 }
