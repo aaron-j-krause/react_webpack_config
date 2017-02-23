@@ -1,8 +1,3 @@
 Webpack Config for Basic React
 
-### Dependencies
-
-- webpack
-	- webpack
-	- webpack-dev-server
-	- babel-loader
+Simple config. Tutorial/comments a couple commits back.
